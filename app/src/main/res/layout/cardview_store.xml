@@ -1,0 +1,97 @@
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_row_selector"
+            android:padding="8dp" >
+            <LinearLayout android:id="@+id/Text"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/tvId"
+                     />
+                <TextView
+                    android:id="@+id/tvCadenaRuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/edittext_textsize_login"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="false" />
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/edittext_textsize_login"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="false" />
+                <!-- Rating -->
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dip"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/textsize_min"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignTop="@+id/tvAudits" />
+                <!-- Release Year -->
+                <TextView
+                    android:id="@+id/tvDistrict"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_below="@+id/tvTotalStores"
+                    />
+                <TextView
+                    android:id="@+id/tvRegion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_below="@+id/tvDistrict"
+                    />
+
+                <TextView
+                    android:id="@+id/tvCompanyId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_below="@+id/tvRegion"
+                    />
+
+                <Button
+                    android:id="@+id/btLiberar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Liberar"
+                    android:theme="@style/RaisedButtonDark"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_below="@+id/tvCompanyId"
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
