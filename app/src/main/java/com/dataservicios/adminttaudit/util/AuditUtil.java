@@ -77,7 +77,7 @@ public class AuditUtil {
     }
 
 
-    public static ArrayList<Company> getCompanies(int active, int visible ){
+    public static ArrayList<Company> getCompanies(int active, int visible , int visits){
 
         int success ;
 
@@ -88,6 +88,7 @@ public class AuditUtil {
 
             params.put("active", String.valueOf(active));
             params.put("visible", String.valueOf(visible));
+            params.put("visits", String.valueOf(visits));
 
             JSONParserX jsonParser = new JSONParserX();
             // getting product details by making HTTP request
@@ -157,21 +158,21 @@ public class AuditUtil {
                     ObjJson = json.getJSONArray("stores");
                     // looping through All Products
                     if(ObjJson.length() > 0) {
-
                         for (int i = 0; i < ObjJson.length(); i++) {
-
                             JSONObject obj = ObjJson.getJSONObject(i);
                             Store store = new Store();
                             store.setId(Integer.valueOf(obj.getString("id")));
-                            store.setCadenaRuc(obj.getString("cadenaRuc"));
+                            //store.setCadenaRuc(obj.getString("cadenaRuc"));
+                            if(json.isNull("cadenaRuc")) store.setCadenaRuc("");  else store.setCadenaRuc(obj.getString("cadenaRuc"));
                             store.setFullname(obj.getString("fullname"));
                             store.setAddress(obj.getString("address"));
                             store.setDistrict(obj.getString("district"));
                             store.setRegion(obj.getString("region"));
+                            store.setNombCompany(obj.getString("nomb_company"));
+                            store.setCodClient(obj.getString("codClient"));
                             store.setCompany_id(obj.getInt("company_id"));
                             stores.add(i,store);
                         }
-
                     }
                     Log.d(LOG_TAG, "Ingresado correctamente");
                 }else{
@@ -186,6 +187,122 @@ public class AuditUtil {
         return  stores;
     }
 
+    public static ArrayList<Store> getStoresVisit(int store_id, int company_id, int visit_id){
+
+        int success ;
+
+        ArrayList<Store> stores = new ArrayList<Store>();
+        try {
+
+            HashMap<String, String> params = new HashMap<>();
+
+            params.put("company_id", String.valueOf(company_id));
+            params.put("store_id", String.valueOf(store_id));
+            params.put("visit_id", String.valueOf(visit_id));
+
+            JSONParserX jsonParser = new JSONParserX();
+            // getting product details by making HTTP request
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/admin_api/api_store_audit_visit.php" ,"POST", params);
+            // check your log for json response
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            if (json == null) {
+                Log.d("JSON result", "Está en nullo");
+
+            } else{
+                success = json.getInt("success");
+                if (success > 0) {
+                    JSONArray ObjJson;
+                    ObjJson = json.getJSONArray("stores");
+                    // looping through All Products
+                    if(ObjJson.length() > 0) {
+                        for (int i = 0; i < ObjJson.length(); i++) {
+                            JSONObject obj = ObjJson.getJSONObject(i);
+                            Store store = new Store();
+                            store.setId(Integer.valueOf(obj.getString("id")));
+                            //store.setCadenaRuc(obj.getString("cadenaRuc"));
+                            if(json.isNull("cadenaRuc")) store.setCadenaRuc("");  else store.setCadenaRuc(obj.getString("cadenaRuc"));
+                            store.setFullname(obj.getString("fullname"));
+                            store.setAddress(obj.getString("address"));
+                            store.setDistrict(obj.getString("district"));
+                            store.setRegion(obj.getString("region"));
+                            store.setNombCompany(obj.getString("nomb_company"));
+//                            store.setCodClient(obj.getString("codClient"));
+                            if(obj.isNull("codClient")) store.setCodClient("");  else store.setCodClient(obj.getString("codClient"));;
+                            store.setCompany_id(obj.getInt("company_id"));
+                            store.setRoad_id(obj.getInt("road_id"));
+                            store.setVisit_id(obj.getInt("visit_id"));
+                            store.setUser_id(obj.getInt("user_id"));
+                            store.setRoad_name(obj.getString("road_name"));
+                            store.setUser_name(obj.getString("user_name"));
+
+                            stores.add(i,store);
+                        }
+                    }
+                    Log.d(LOG_TAG, "Ingresado correctamente");
+                }else{
+                    Log.d(LOG_TAG, "No se ingreso el registro");
+                    //return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // return false;
+        }
+        return  stores;
+    }
+
+    public static ArrayList<Store> getStoresForCode(String codclient){
+
+        int success ;
+
+        ArrayList<Store> stores = new ArrayList<Store>();
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("codclient", String.valueOf(codclient));
+            JSONParserX jsonParser = new JSONParserX();
+            // getting product details by making HTTP request
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/admin_api/api_search_cod_client_app.php" ,"POST", params);
+            // check your log for json response
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            if (json == null) {
+                Log.d("JSON result", "Está en nullo");
+            } else{
+                success = json.getInt("success");
+                if (success > 0) {
+                    JSONArray ObjJson;
+                    ObjJson = json.getJSONArray("stores");
+                    // looping through All Products
+                    if(ObjJson.length() > 0) {
+                        for (int i = 0; i < ObjJson.length(); i++) {
+                            JSONObject obj = ObjJson.getJSONObject(i);
+                            Store store = new Store();
+                            store.setId(Integer.valueOf(obj.getString("id")));
+                            //store.setCadenaRuc(obj.getString("cadenaRuc"));
+                            if(json.isNull("cadenaRuc")) store.setCadenaRuc("");  else store.setCadenaRuc(obj.getString("cadenaRuc"));;
+                            store.setFullname(obj.getString("fullname"));
+                            store.setAddress(obj.getString("address"));
+                            store.setDistrict(obj.getString("district"));
+                            store.setRegion(obj.getString("region"));
+                            store.setNombCompany(obj.getString("nomb_company"));
+                            store.setCodClient(obj.getString("codClient"));
+                            store.setCompany_id(obj.getInt("company_id"));
+                            stores.add(i,store);
+                        }
+                    }
+                    Log.d(LOG_TAG, "Ingresado correctamente");
+                }else{
+                    Log.d(LOG_TAG, "No se ingreso el registro");
+                    //return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // return false;
+        }
+        return  stores;
+    }
 
     public static ArrayList<TableAffected> storeLiberate(int store_id, int company_id) {
         int success ;
@@ -241,4 +358,114 @@ public class AuditUtil {
         return  tablesAffecteds;
     }
 
+
+    public static ArrayList<TableAffected> storeLiberateStoreVisit(int store_id, int company_id, int visit_id, int road_id) {
+        int success ;
+
+        ArrayList<TableAffected> tablesAffecteds = new ArrayList<TableAffected>();
+        try {
+
+            HashMap<String, String> params = new HashMap<>();
+
+            params.put("company_id", String.valueOf(company_id));
+            params.put("store_id", String.valueOf(store_id));
+            params.put("visit_id", String.valueOf(visit_id));
+            params.put("road_id", String.valueOf(road_id));
+
+            JSONParserX jsonParser = new JSONParserX();
+            // getting product details by making HTTP request
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/admin_api/api_store_visit_liberation.php" ,"POST", params);
+            // check your log for json response
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            if (json == null) {
+                Log.d("JSON result", "Está en nullo");
+
+            } else{
+                success = json.getInt("success");
+                if (success > 0) {
+                    JSONArray ObjJson;
+                    ObjJson = json.getJSONArray("tables");
+                    // looping through All Products
+                    if(ObjJson.length() > 0) {
+
+                        for (int i = 0; i < ObjJson.length(); i++) {
+
+                            JSONObject obj = ObjJson.getJSONObject(i);
+                            TableAffected tableAffected = new TableAffected();
+                            tableAffected.setTable(String.valueOf(obj.getString("table")));
+                            tableAffected.setAction(obj.getString("action"));
+                            tableAffected.setRowsAffected(obj.getInt("rows"));
+                            tablesAffecteds.add(i,tableAffected);
+                        }
+
+                    }
+                    Log.d(LOG_TAG, "Ingresado correctamente");
+                }else{
+                    Log.d(LOG_TAG, "No se ingreso el registro");
+                    //return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // return false;
+        }
+        return  tablesAffecteds;
+    }
+
+
+    public static ArrayList<TableAffected> storeOpenForOrders(int store_id, int company_id, int visit_id, int road_id) {
+
+        int success ;
+
+        ArrayList<TableAffected> tablesAffecteds = new ArrayList<TableAffected>();
+        try {
+
+            HashMap<String, String> params = new HashMap<>();
+
+            params.put("company_id", String.valueOf(company_id));
+            params.put("store_id", String.valueOf(store_id));
+            params.put("visit_id", String.valueOf(visit_id));
+            params.put("road_id", String.valueOf(road_id));
+
+            JSONParserX jsonParser = new JSONParserX();
+            // getting product details by making HTTP request
+            JSONObject json = jsonParser.makeHttpRequest(GlobalConstant.dominio + "/admin_api/api_store_open_for_orders.php" ,"POST", params);
+            // check your log for json response
+            Log.d("Login attempt", json.toString());
+            // json success, tag que retorna el json
+            if (json == null) {
+                Log.d("JSON result", "Está en nullo");
+
+            } else{
+                success = json.getInt("success");
+                if (success > 0) {
+                    JSONArray ObjJson;
+                    ObjJson = json.getJSONArray("tables");
+                    // looping through All Products
+                    if(ObjJson.length() > 0) {
+
+                        for (int i = 0; i < ObjJson.length(); i++) {
+
+                            JSONObject obj = ObjJson.getJSONObject(i);
+                            TableAffected tableAffected = new TableAffected();
+                            tableAffected.setTable(String.valueOf(obj.getString("table")));
+                            tableAffected.setAction(obj.getString("action"));
+                            tableAffected.setRowsAffected(obj.getInt("rows"));
+                            tablesAffecteds.add(i,tableAffected);
+                        }
+
+                    }
+                    Log.d(LOG_TAG, "Ingresado correctamente");
+                }else{
+                    Log.d(LOG_TAG, "No se ingreso el registro");
+                    //return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // return false;
+        }
+        return  tablesAffecteds;
+    }
 }

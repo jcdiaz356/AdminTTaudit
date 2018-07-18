@@ -4,16 +4,17 @@
 
     <string-array name="nav_drawer_items">
         <item>Liberar Store</item>
-        <!--<item>Backup de fotos</item>-->
+        <item>Liberar Store con visitas</item>
+        <item>Buscar Store por Dir</item>
         <!--<item>Registro de fotos</item>-->
     </string-array>
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_menu_camera</item>
         <!--<item>@drawable/ic_menu_camera</item>-->
-        <!--<item>@drawable/ic_menu_camera</item>-->
-
     </array>
     <string name="desc_list_item_icon">Item Icon</string>
 
@@ -72,4 +73,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="message_no_found">No se encontro elementos, vuelva a intentar</string>
     <string name="message_store_liberation">Esta seguro de liberar el punto</string>
+    <string name="text_requiere_store">Requiere un Store ID</string>
+    <string name="text_store_id">Store ID: </string>
+    <string name="text_cod_client">DIR: </string>
+    <string name="text_campana">Campaña: </string>
+    <string name="text_road_name">Nombre de Ruta:</string>
+    <string name="text_road_id">Ruta ID:</string>
+    <string name="text_user_id">User ID:</string>
+    <string name="text_uuario_name">Auditor:</string>
+    <string name="text_usuer_id">Usuario ID</string>
+    <string name="text_visita_id">Visita ID:</string>
+    <string name="text_open_for_order">Pedido</string>
+    <string name="message_opn_store_for_pedido">Se abrió la tienda para pasar pedido</string>
+    <string name="title_open_store">Abrir tienda</string>
+    <string name="message_store_open_for_order">¿ Está seguro de abrir la tienda para pasar pedido ?</string>
 </resources>

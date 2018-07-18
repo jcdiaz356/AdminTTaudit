@@ -1,5 +1,6 @@
 package com.dataservicios.adminttaudit.view.fragment;
 
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -20,45 +21,45 @@ import android.widget.Toast;
 
 import com.dataservicios.adminttaudit.R;
 import com.dataservicios.adminttaudit.adapter.StoresAdapterRecyclerView;
-import com.dataservicios.adminttaudit.db.DatabaseManager;
+import com.dataservicios.adminttaudit.adapter.StoresVisitAdapterRecyclerView;
 import com.dataservicios.adminttaudit.model.Company;
 import com.dataservicios.adminttaudit.model.Store;
 import com.dataservicios.adminttaudit.model.Visit;
-import com.dataservicios.adminttaudit.repo.TableAffectedRepo;
-import com.dataservicios.adminttaudit.repo.UserRepo;
 import com.dataservicios.adminttaudit.util.AuditUtil;
-import com.dataservicios.adminttaudit.util.GlobalConstant;
 import com.dataservicios.adminttaudit.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SearchStoreVisitFragment extends Fragment {
 
-public class RouteFragment extends Fragment {
-    private static final String LOG_TAG = RouteFragment.class.getSimpleName();
+    private static final String LOG_TAG = SearchStoreVisitFragment.class.getSimpleName();
 
-    private SessionManager              session;
-    private Activity                    myActivity = (Activity) getActivity();
-    private ProgressDialog              pDialog;
-    private Spinner                     spCompany;
-    private LinearLayout                lySearch;
-    private Button                      btSearch ;
-    private int                         user_id, store_id, company_id;
-    private EditText                    etStoreId;
-    private ArrayAdapter<Company>       spinnerAdapter;
-    private ArrayAdapter<Visit>         visitArrayAdapter;
-    private StoresAdapterRecyclerView   pictureAdapterRecyclerView;
+    private SessionManager                  session;
+    private Activity                        myActivity = (Activity) getActivity();
+    private ProgressDialog                  pDialog;
+    private Spinner                         spCompany,spVisit;
+    private LinearLayout                    lySearch;
+    private Button                          btSearch ;
+    private int                             user_id, store_id, company_id,visit_id;
+    private EditText                        etStoreId;
+    private ArrayAdapter<Company>           spinnerAdapter;
+    private ArrayAdapter<Visit>             visitArrayAdapter;
+    private StoresVisitAdapterRecyclerView  storesVisitAdapterRecyclerView;
 
-    private RecyclerView                storeRecycler;
+    private RecyclerView storeRecycler;
 
-
-    public RouteFragment() {
+    public SearchStoreVisitFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         session = new SessionManager(getActivity());
         HashMap<String, String> userSesion = session.getUserDetails();
         user_id = Integer.valueOf(userSesion.get(SessionManager.KEY_ID_USER)) ;
@@ -66,13 +67,14 @@ public class RouteFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_route, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_store_visit, container, false);
         storeRecycler  = (RecyclerView) view.findViewById(R.id.storeRecycler);
 
-        spCompany  = (Spinner) view.findViewById(R.id.spCompany);
-        lySearch  = (LinearLayout) view.findViewById(R.id.lySearch);
-        etStoreId  = (EditText) view.findViewById(R.id.etStoreId);
-        btSearch  = (Button) view.findViewById(R.id.btSearch);
+        spCompany   = (Spinner) view.findViewById(R.id.spCompany);
+        spVisit     = (Spinner) view.findViewById(R.id.spVisit);
+        lySearch    = (LinearLayout) view.findViewById(R.id.lySearch);
+        etStoreId   = (EditText) view.findViewById(R.id.etStoreId);
+        btSearch    = (Button) view.findViewById(R.id.btSearch);
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -82,7 +84,7 @@ public class RouteFragment extends Fragment {
 
 //        RouteAdapterRecyclerView pictureAdapterRecyclerView =  new
 
-       new loadCompany().execute();
+        new loadCompany().execute();
 
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +94,7 @@ public class RouteFragment extends Fragment {
                 if (!etStoreId.getText().toString().trim().equals("") ) {
                     store_id    = Integer.valueOf(etStoreId.getText().toString().trim());
                     company_id  = ((Company) spCompany.getSelectedItem () ).getId () ;
+                    visit_id  = ((Visit) spVisit.getSelectedItem () ).getId () ;
                     new loadStores().execute();
                     storeRecycler.requestFocus();
                 } else {
@@ -125,17 +128,6 @@ public class RouteFragment extends Fragment {
         return view;
     }
 
-    private ArrayList<Company> companiesLista() {
-
-        ArrayList<Company> companie = new ArrayList<Company>();
-        companie.add(new Company(1,"sdf"));
-        companie.add(new Company(2,"dfgdfgdfg"));
-        companie.add(new Company(3,"sdf"));
-
-
-        return companie;
-    }
-
     class loadCompany extends AsyncTask<Void, Integer , ArrayList<Company>> {
         /**
          * Antes de comenzar en el hilo determinado, Mostrar progresión
@@ -154,7 +146,7 @@ public class RouteFragment extends Fragment {
         protected ArrayList<Company> doInBackground(Void... params) {
 
             ArrayList<Company> companyes = new ArrayList<Company>();
-            companyes = AuditUtil.getCompanies(1,1,0);
+            companyes = AuditUtil.getCompanies(1,1,1);
 
             return companyes;
         }
@@ -170,7 +162,14 @@ public class RouteFragment extends Fragment {
                 spinnerAdapter = new ArrayAdapter<Company>(getContext(), android.R.layout.simple_spinner_item, companies);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spCompany.setAdapter(spinnerAdapter);
+
+                visitArrayAdapter = new ArrayAdapter<Visit>(getContext(),android.R.layout.simple_spinner_item, visits());
+                visitArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spVisit.setAdapter(visitArrayAdapter);
+
+
                 lySearch.setVisibility(View.VISIBLE);
+
 
             } else  {
 
@@ -200,6 +199,22 @@ public class RouteFragment extends Fragment {
 //        return route;
 //    }
 
+    private ArrayList<Visit> visits(){
+        ArrayList<Visit> visits = new ArrayList<Visit>();
+
+        visits.add(new Visit(1,"Visita 1"));
+        visits.add(new Visit(2,"Visita 2"));
+        visits.add(new Visit(3,"Visita 3"));
+        visits.add(new Visit(4,"Visita 4"));
+        visits.add(new Visit(5,"Visita 5"));
+        visits.add(new Visit(6,"Visita 6"));
+        visits.add(new Visit(7,"Visita 7"));
+        visits.add(new Visit(8,"Visita 8"));
+
+        return  visits;
+    }
+
+
 
     class loadStores extends AsyncTask<Void, String, ArrayList<Store>> {
 
@@ -221,7 +236,7 @@ public class RouteFragment extends Fragment {
         @Override
         protected ArrayList<Store> doInBackground(Void... params) {
             // TODO Auto-generated method stub
-            return AuditUtil.getStores(store_id,company_id);
+            return AuditUtil.getStoresVisit(store_id,company_id,visit_id);
 
         }
         /**
@@ -232,8 +247,8 @@ public class RouteFragment extends Fragment {
 
             if (stores.size() > 0 )  {
 
-                pictureAdapterRecyclerView =  new StoresAdapterRecyclerView(stores, R.layout.cardview_store,getActivity(),true);
-                storeRecycler.setAdapter(pictureAdapterRecyclerView);
+                storesVisitAdapterRecyclerView =  new StoresVisitAdapterRecyclerView(stores, R.layout.cardview_store_visit,getActivity(),true);
+                storeRecycler.setAdapter(storesVisitAdapterRecyclerView);
                 //lySearch.setVisibility(View.VISIBLE);
             } else  {
 

@@ -12,6 +12,14 @@ public class Store {
     private String district;
     private String region;
     private int company_id;
+    private String nombCompany;
+    private String codClient;
+    private int visit_id;
+    private int road_id;
+    private String road_name;
+    private int user_id;
+    private String user_name;
+
 
     public int getId() {
         return id;
@@ -67,5 +75,61 @@ public class Store {
 
     public void setCompany_id(int company_id) {
         this.company_id = company_id;
+    }
+
+    public String getNombCompany() {
+        return nombCompany;
+    }
+
+    public void setNombCompany(String nombCompany) {
+        this.nombCompany = nombCompany;
+    }
+
+    public String getCodClient() {
+        return codClient;
+    }
+
+    public void setCodClient(String codClient) {
+        this.codClient = codClient;
+    }
+
+    public int getVisit_id() {
+        return visit_id;
+    }
+
+    public void setVisit_id(int visit_id) {
+        this.visit_id = visit_id;
+    }
+
+    public int getRoad_id() {
+        return road_id;
+    }
+
+    public void setRoad_id(int road_id) {
+        this.road_id = road_id;
+    }
+
+    public String getRoad_name() {
+        return road_name;
+    }
+
+    public void setRoad_name(String road_name) {
+        this.road_name = road_name;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 }

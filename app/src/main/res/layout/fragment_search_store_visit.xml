@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.dataservicios.adminttaudit.view.fragment.RouteFragment">
+    tools:context="com.dataservicios.adminttaudit.view.fragment.SearchStoreVisitFragment">
     <include layout="@layout/actionbar_toolbar"/>
 
     <LinearLayout
@@ -35,6 +35,21 @@
 
                 <Spinner
                     android:id="@+id/spCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <Spinner
+                    android:id="@+id/spVisit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

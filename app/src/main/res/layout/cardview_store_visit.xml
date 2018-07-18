@@ -29,7 +29,7 @@
                     android:textStyle="bold"
                     android:textIsSelectable="true"
                     android:selectAllOnFocus="true"
-                     />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -51,11 +51,11 @@
 
             </LinearLayout>
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/text_separator_buton"
-            >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
 
                 <TextView
                     android:id="@+id/tvCadenaRuc"
@@ -110,6 +110,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textIsSelectable="true"
+                    android:background="@color/colorRed"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="ID"
+                    android:textColor="@color/colorWhite"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -170,18 +175,143 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/text_separator_buton"
                 >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_road_id" />
+                <TextView
+                    android:id="@+id/tvRoadId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+                    android:background="@color/colorRed"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="ID"
+                    android:textColor="@color/colorWhite"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_road_name" />
+                <TextView
+                    android:id="@+id/tvRoadName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="ID"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_usuer_id" />
+                <TextView
+                    android:id="@+id/tvUserId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+                    android:background="@color/colorRed"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="@string/text_user_id"
+                    android:textColor="@color/colorWhite"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_uuario_name" />
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="ID"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_visita_id" />
+                <TextView
+                    android:id="@+id/tvVisitId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
+                    android:background="@color/colorRed"
+                    android:paddingLeft="@dimen/padding_text"
+                    android:paddingRight="@dimen/padding_text"
+                    android:text="@string/text_user_id"
+                    android:textColor="@color/colorWhite"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_separator_buton"
+                >
 
                 <!--<Button-->
-                    <!--android:id="@+id/btLiberar"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentBottom="false"-->
-                    <!--android:layout_alignParentRight="false"-->
-                    <!--android:layout_alignParentTop="true"-->
-                    <!--android:layout_below="@+id/tvCompanyId"-->
-                    <!--android:layout_weight="0.2"-->
-                    <!--android:text="Liberar"-->
-                    <!--android:theme="@style/RaisedButtonDark" />-->
+                <!--android:id="@+id/btLiberar"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="false"-->
+                <!--android:layout_alignParentRight="false"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_below="@+id/tvCompanyId"-->
+                <!--android:layout_weight="0.2"-->
+                <!--android:text="Liberar"-->
+                <!--android:theme="@style/RaisedButtonDark" />-->
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -192,7 +322,13 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Compartir"
+                    android:text="@string/text_open_for_order"
+                    android:id="@+id/btOpenForOrder"
+                    android:drawableStart="@drawable/ic_open_for_order"
+                    style="?android:attr/borderlessButtonStyle"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/btShared"
                     android:drawableStart="@drawable/ic_menu_share"
                     style="?android:attr/borderlessButtonStyle"/>
@@ -203,5 +339,5 @@
 
     </FrameLayout>
 
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>
 

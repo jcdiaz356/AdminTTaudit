@@ -30,6 +30,8 @@ import com.dataservicios.adminttaudit.model.User;
 import com.dataservicios.adminttaudit.repo.UserRepo;
 import com.dataservicios.adminttaudit.util.SessionManager;
 import com.dataservicios.adminttaudit.view.fragment.RouteFragment;
+import com.dataservicios.adminttaudit.view.fragment.SearchCodClientFragment;
+import com.dataservicios.adminttaudit.view.fragment.SearchStoreVisitFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -108,7 +110,8 @@ public class PanelAdminActivity extends AppCompatActivity {
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId( 0, -1)));
-//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId( 1 , -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId( 1 , -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1)));
 //        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId( 2 , -1), true , "0"));
 
         navMenuIcons.recycle();
@@ -152,7 +155,7 @@ public class PanelAdminActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
@@ -199,10 +202,12 @@ public class PanelAdminActivity extends AppCompatActivity {
 //                startActivity(intent);
                 break;
             case 1:
-                //fragment = new GraficosFragment();
+                fragment = new SearchStoreVisitFragment();
                 //fragment = new PhotosFragment();
                 break;
             case 2:
+
+                fragment = new SearchCodClientFragment();
                 //fragment = new CommunityFragment();
                 break;
             case 4:

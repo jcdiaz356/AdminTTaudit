@@ -41,7 +41,6 @@ public class DetailStoreLiberateActivity extends AppCompatActivity {
         tablesAffecteds = (ArrayList<TableAffected>) tableAffectedRepo.findAll();
 
         for (TableAffected t:tablesAffecteds){
-
             etDetail.append("Tabla:");
             etDetail.append(t.getTable().toString());
             etDetail.append("\n");
@@ -52,8 +51,6 @@ public class DetailStoreLiberateActivity extends AppCompatActivity {
             etDetail.append(String.valueOf(t.getRowsAffected()));
             etDetail.append("\n");
             etDetail.append("\n");
-
-
         }
 
 
